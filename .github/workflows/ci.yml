@@ -1,0 +1,26 @@
+name: C++ CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout код
+        uses: actions/checkout@v4
+
+      - name: Установка зависимостей
+        run: sudo apt-get update && sudo apt-get install -y g++ make
+
+      - name: Сборка проекта
+        run: make
+
+      - name: Запуск программы
+        run: ./program
